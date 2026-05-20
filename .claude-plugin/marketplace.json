@@ -1,0 +1,14 @@
+{
+    "name": "nitinkore-sn-test",
+    "owner": {
+        "name": "Nitin Kore",
+        "email": "nitin.kore@sambanovasystems.com"
+    },
+    "plugins": [
+        {
+            "name": "sambanova-code-mcp",
+            "source": "./plugins/sambanova-code-mcp",
+            "description": "MCP server that routes coding tasks to SambaNova Cloud models (default: MiniMax M2.7)"
+        }
+    ]
+}

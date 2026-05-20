@@ -1,0 +1,28 @@
+{
+  "name": "sambanova-code-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that routes coding tasks to SambaNova Cloud models (default: MiniMax M2.7)",
+  "author": "Nitin Kore",
+  "homepage": "https://github.com/sambanova/sambanova-marketplace",
+  "keywords": ["mcp", "sambanova", "coding", "ai", "minimax"],
+  "mcpServers": {
+    "sambanova-code": {
+      "command": "python3",
+      "args": ["server.py"],
+      "env": {
+        "SAMBANOVA_API_KEY": {
+          "description": "SambaNova API key",
+          "required": true
+        },
+        "SAMBANOVA_BASE_URL": {
+          "description": "API base URL",
+          "default": "https://api.sambanova.ai/v1"
+        },
+        "SAMBANOVA_MODEL": {
+          "description": "Model to use for code generation",
+          "default": "MiniMax-M2.7"
+        }
+      }
+    }
+  }
+}
