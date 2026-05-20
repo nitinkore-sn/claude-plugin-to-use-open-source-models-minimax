@@ -23,32 +23,49 @@ MiniMax is ~20x cheaper than Opus for coding tasks.
 - `sambanova_explain_code` - Explain what code does
 - `sambanova_write_tests` - Write unit tests
 
-## Configuration
-
-Environment variables:
-- `SAMBANOVA_API_KEY` - Your SambaNova API key (required)
-- `SAMBANOVA_BASE_URL` - API base URL (default: `https://api.sambanova.ai/v1`)
-- `SAMBANOVA_MODEL` - Model to use (default: `MiniMax-M2.7`)
-
 ## Setup
 
-1. Install dependencies:
-   ```bash
-   pip install "mcp[cli]" httpx
-   ```
+### Step 1 — Get a SambaNova API key
 
-2. Configure environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your SambaNova API key
-   ```
+Sign up at [cloud.sambanova.ai](https://cloud.sambanova.ai) → API Keys → Create Key. Copy the key.
 
-3. The MCP server will be available when the plugin is installed.
+### Step 2 — Install dependencies
 
-## Requirements
+**Mac / Linux**
+```bash
+pip install "mcp[cli]" httpx
+```
 
-- Python 3
-- SambaNova API key from [cloud.sambanova.ai](https://cloud.sambanova.ai)
+**Windows** (Command Prompt or PowerShell)
+```
+pip install "mcp[cli]" httpx
+```
+
+### Step 3 — Add your API key
+
+**Mac / Linux** — run in Terminal:
+```bash
+claude mcp add sambanova-code python3 \
+  ~/.claude/plugins/cache/sn-internal/sambanova-code-mcp/0.1.0/server.py \
+  -e SAMBANOVA_API_KEY=paste-your-key-here \
+  -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 \
+  -e SAMBANOVA_MODEL=MiniMax-M2.7
+```
+
+**Windows** — run in Command Prompt:
+```
+claude mcp add sambanova-code python3 ^
+  %USERPROFILE%\.claude\plugins\cache\sn-internal\sambanova-code-mcp\0.1.0\server.py ^
+  -e SAMBANOVA_API_KEY=paste-your-key-here ^
+  -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 ^
+  -e SAMBANOVA_MODEL=MiniMax-M2.7
+```
+
+Replace `paste-your-key-here` with your actual SambaNova API key.
+
+### Step 4 — Restart Claude Code
+
+Quit and reopen Claude Code. The `sambanova_*` tools will appear in the tools list (hammer icon).
 
 ---
 
