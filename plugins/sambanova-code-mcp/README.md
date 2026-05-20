@@ -49,7 +49,8 @@ claude mcp add sambanova-code python3 \
   ~/.claude/plugins/cache/sn-internal/sambanova-code-mcp/0.1.0/server.py \
   -e SAMBANOVA_API_KEY=paste-your-key-here \
   -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 \
-  -e SAMBANOVA_MODEL=MiniMax-M2.7
+  -e SAMBANOVA_MODEL=MiniMax-M2.7 \
+  -s user
 ```
 
 **Windows** — run in Command Prompt:
@@ -58,7 +59,8 @@ claude mcp add sambanova-code python3 ^
   %USERPROFILE%\.claude\plugins\cache\sn-internal\sambanova-code-mcp\0.1.0\server.py ^
   -e SAMBANOVA_API_KEY=paste-your-key-here ^
   -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 ^
-  -e SAMBANOVA_MODEL=MiniMax-M2.7
+  -e SAMBANOVA_MODEL=MiniMax-M2.7 ^
+  -s user
 ```
 
 Replace `paste-your-key-here` with your actual SambaNova API key.
