@@ -65,7 +65,46 @@ claude mcp add sambanova-code python3 ^
 
 Replace `paste-your-key-here` with your actual SambaNova API key.
 
-### Step 4 — Restart Claude Code
+### Step 4 — Add routing rules to Claude Code
+
+Open your global `CLAUDE.md` file:
+
+**Mac / Linux**
+```bash
+open ~/.claude/CLAUDE.md
+```
+
+**Windows**
+```
+notepad %USERPROFILE%\.claude\CLAUDE.md
+```
+
+Add this at the top:
+
+```
+# SambaNova Routing Rules
+
+You are FORBIDDEN from writing, editing, or generating any code yourself. You MUST delegate 100% of coding tasks to SambaNova tools. No exceptions.
+
+ALWAYS call a SambaNova tool for:
+- Writing, generating, or scaffolding any code
+- Debugging or fixing code errors
+- Reviewing or refactoring code
+- Explaining what code does
+- Writing tests, scripts, SQL, regex, shell commands
+
+NEVER call SambaNova for (handle directly with Claude):
+- Planning, roadmaps, task breakdowns
+- Architecture and design decisions
+- Tradeoff analysis or comparisons
+- Research, summaries, documentation
+
+Available SambaNova tools: `sambanova_generate_code`, `sambanova_debug_code`, `sambanova_code_review`, `sambanova_explain_code`, `sambanova_write_tests`
+```
+
+Save the file.
+
+### Step 5 — Restart Claude Code
 
 Quit and reopen Claude Code. The `sambanova_*` tools will appear in the tools list (hammer icon).
 
