@@ -86,7 +86,23 @@ Replace `paste-your-key-here` with your actual SambaNova API key.
 
 ### Step 5 — Restart Claude Code
 
-Quit Claude Code and reopen it. The `sambanova_*` tools will now be active.
+**Mac / Linux** — in Terminal:
+```bash
+# Press Ctrl+C to quit Claude Code, then reopen it:
+claude
+```
+
+**Windows** — in Command Prompt:
+```
+# Press Ctrl+C to quit Claude Code, then reopen it:
+claude
+```
+
+Or if Claude Code is running as a desktop app:
+- **Mac** — click **Claude** in the menu bar → **Quit Claude** → reopen from Applications
+- **Windows** — right-click the Claude icon in the taskbar → **Quit** → reopen from Start menu
+
+The `sambanova_*` tools will now be active.
 
 ### Step 6 — Verify
 
