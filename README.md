@@ -1,46 +1,161 @@
-# SambaNova Code MCP — Plugin Test
+# SambaNova Code MCP
 
-Test marketplace for the `sambanova-code-mcp` Claude plugin.
+MCP server that routes coding tasks to **SambaNova Cloud models** (default: MiniMax M2.7), keeping planning and architecture with Claude.
 
-Routes Claude coding tasks to **MiniMax M2.7 via SambaNova Cloud** — ~8-20x cheaper than Claude Opus for code generation.
+- **Coding tasks** (write, debug, review, explain, test) → SambaNova model via SambaNova Cloud
+- **Planning / design / architecture** → Claude handles directly
 
-## Quick Install
+## Cost Comparison (MiniMax M2.7)
 
-**1. Install dependencies** — in Terminal:
+| Model | Input $/M tokens | Output $/M tokens |
+|---|---|---|
+| MiniMax M2.7 (SambaNova) | $0.60 | $2.40 |
+| Claude Sonnet 4.6 | $3.00 | $15.00 |
+| Claude Opus 4.7 | $5.00 | $25.00 |
+
+MiniMax is ~8-20x cheaper than Claude for coding tasks.
+
+## Tools
+
+| Tool | Use for |
+|---|---|
+| `sambanova_generate_code` | Writing or scaffolding code in any language |
+| `sambanova_debug_code` | Fixing bugs and errors |
+| `sambanova_code_review` | Reviewing and refactoring code |
+| `sambanova_explain_code` | Explaining what code does |
+| `sambanova_write_tests` | Writing unit tests |
+
+Claude orchestrates file reads, edits, and test runs — these tools handle code generation and return text. No file system access required.
+
+## When to use
+
+**Worth it:**
+- Generating new functions, classes, or modules from scratch
+- Debugging non-trivial errors with stack traces
+- Writing test suites for existing code
+- Reviewing or refactoring larger code blocks
+
+**Not worth it:**
+- Single-line edits or simple variable renames — Claude handles these faster inline
+- Tasks where full file context matters more than generation speed
+
+Each tool call adds a network round-trip to SambaNova Cloud. For substantial code generation (>10 lines, complex logic), the cost savings (~8-20x cheaper than Claude Opus) easily outweigh the overhead. For trivial edits, let Claude handle it directly.
+
+---
+
+## Setup
+
+### Step 1 — Get a SambaNova API key
+
+Sign up at [cloud.sambanova.ai](https://cloud.sambanova.ai) → API Keys → Create Key. Copy the key.
+
+### Step 2 — Install dependencies
+
+Open Terminal (Mac/Linux) or Command Prompt (Windows) and run:
+
+**Option A — using a virtual environment (recommended):**
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate        # Mac / Linux
+# .venv\Scripts\activate         # Windows
+pip install "mcp[cli]" httpx
+```
+
+**Option B — install globally:**
+```bash
+# Mac / Linux
 pip install "mcp[cli]" httpx --break-system-packages
+
+# Windows
+pip install "mcp[cli]" httpx
 ```
 
-**2. Install plugin** — in Claude Code:
+### Step 3 — Open Claude Code
+
+Claude Code is a command-line tool. Open it by:
+
+- **Mac / Linux** — open Terminal and type `claude`
+- **Windows** — open Command Prompt or PowerShell and type `claude`
+
+Once inside Claude Code, you'll see a `>` prompt where you can type commands and chat with Claude.
+
+### Step 4 — Install the plugin
+
+At the Claude Code prompt, run these two commands one at a time:
+
 ```
-/plugin marketplace add https://github.com/nitinkore-sn/000-claude-plugin-test
-/plugin install sambanova-code-mcp@nitinkore-sn-test
+/plugin marketplace add https://github.com/sambanova/sambanova-marketplace
 ```
 
-**3. Add API key** — in Terminal:
+```
+/plugin install sambanova-code-mcp@sn-internal
+```
+
+The first command registers the SambaNova marketplace. The second installs the plugin from it.
+
+### Step 5 — Add your API key
+
+Open a new Terminal (Mac/Linux) or Command Prompt (Windows) — separate from Claude Code — and run:
+
+**Mac / Linux:**
 ```bash
 claude mcp add sambanova-code python3 \
-  ~/.claude/plugins/cache/nitinkore-sn-test/sambanova-code-mcp/0.1.0/server.py \
-  -e SAMBANOVA_API_KEY=your-key-here \
+  ~/.claude/plugins/cache/sn-internal/sambanova-code-mcp/0.1.0/server.py \
+  -e SAMBANOVA_API_KEY=paste-your-key-here \
   -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 \
   -e SAMBANOVA_MODEL=MiniMax-M2.7 \
   -s user
 ```
 
-**4. Restart Claude Code** then test:
+**Windows:**
+```
+claude mcp add sambanova-code python3 ^
+  %USERPROFILE%\.claude\plugins\cache\sn-internal\sambanova-code-mcp\0.1.0\server.py ^
+  -e SAMBANOVA_API_KEY=paste-your-key-here ^
+  -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 ^
+  -e SAMBANOVA_MODEL=MiniMax-M2.7 ^
+  -s user
+```
+
+Replace `paste-your-key-here` with your actual SambaNova API key.
+
+### Step 6 — Restart Claude Code
+
+**Mac / Linux** — in Terminal:
+```bash
+# Press Ctrl+C to quit Claude Code, then reopen it:
+claude
+```
+
+**Windows** — in Command Prompt:
+```
+# Press Ctrl+C to quit Claude Code, then reopen it:
+claude
+```
+
+Or if Claude Code is running as a desktop app:
+- **Mac** — click **Claude** in the menu bar → **Quit Claude** → reopen from Applications
+- **Windows** — right-click the Claude icon in the taskbar → **Quit** → reopen from Start menu
+
+The `sambanova_*` tools will now be active.
+
+### Step 7 — Verify
+
+In Claude Code, ask:
+
 ```
 write a Python function to reverse a string
 ```
 
+Claude will call `sambanova_generate_code` and return code generated by MiniMax M2.7 via SambaNova Cloud.
+
+---
+
 ## Requirements
 
 - Python 3.8+
-- Claude Code — [claude.ai/code](https://claude.ai/code)
-- SambaNova API key — [cloud.sambanova.ai](https://cloud.sambanova.ai)
-
-## Plugin
-
-See [plugins/sambanova-code-mcp/README.md](plugins/sambanova-code-mcp/README.md) for full documentation.
+- Claude Code installed — get it at [claude.ai/code](https://claude.ai/code)
+- SambaNova API key from [cloud.sambanova.ai](https://cloud.sambanova.ai)
 
 ---
 
