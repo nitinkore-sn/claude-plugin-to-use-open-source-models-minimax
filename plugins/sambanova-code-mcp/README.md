@@ -27,6 +27,20 @@ MiniMax is ~8-20x cheaper than Claude for coding tasks.
 
 Claude orchestrates file reads, edits, and test runs — these tools handle code generation and return text. No file system access required.
 
+## When to use
+
+**Worth it:**
+- Generating new functions, classes, or modules from scratch
+- Debugging non-trivial errors with stack traces
+- Writing test suites for existing code
+- Reviewing or refactoring larger code blocks
+
+**Not worth it:**
+- Single-line edits or simple variable renames — Claude handles these faster inline
+- Tasks where full file context matters more than generation speed
+
+Each tool call adds a network round-trip to SambaNova Cloud. For substantial code generation (>10 lines, complex logic), the cost savings (~8-20x cheaper than Claude Opus) easily outweigh the overhead. For trivial edits, let Claude handle it directly.
+
 ---
 
 ## Setup
