@@ -88,7 +88,7 @@ At the Claude Code prompt, run these two commands one at a time:
 ```
 
 ```
-/plugin install sambanova-code-mcp@nitinkore-sn-test
+/plugin install sambanova-code-mcp@nitinkore-marketplace
 ```
 
 The first command registers the SambaNova marketplace. The second installs the plugin from it.
@@ -100,7 +100,7 @@ Open a new Terminal (Mac/Linux) or Command Prompt (Windows) — separate from Cl
 **Mac / Linux:**
 ```bash
 claude mcp add sambanova-code python3 \
-  ~/.claude/plugins/cache/nitinkore-sn-test/sambanova-code-mcp/0.1.0/server.py \
+  ~/.claude/plugins/cache/nitinkore-marketplace/sambanova-code-mcp/0.1.0/server.py \
   -e SAMBANOVA_API_KEY=paste-your-key-here \
   -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 \
   -e SAMBANOVA_MODEL=MiniMax-M2.7 \
@@ -110,7 +110,7 @@ claude mcp add sambanova-code python3 \
 **Windows:**
 ```
 claude mcp add sambanova-code python3 ^
-  %USERPROFILE%\.claude\plugins\cache\nitinkore-sn-test\sambanova-code-mcp\0.1.0\server.py ^
+  %USERPROFILE%\.claude\plugins\cache\nitinkore-marketplace\sambanova-code-mcp\0.1.0\server.py ^
   -e SAMBANOVA_API_KEY=paste-your-key-here ^
   -e SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1 ^
   -e SAMBANOVA_MODEL=MiniMax-M2.7 ^
@@ -119,7 +119,7 @@ claude mcp add sambanova-code python3 ^
 
 Replace `paste-your-key-here` with your actual SambaNova API key.
 
-### Step 5 — Restart Claude Code
+### Step 6 — Restart Claude Code
 
 **Mac / Linux** — in Terminal:
 ```bash
