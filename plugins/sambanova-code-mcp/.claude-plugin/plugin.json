@@ -7,16 +7,5 @@
     "email": "nitin.kore@sambanovasystems.com"
   },
   "homepage": "https://github.com/sambanova/sambanova-marketplace",
-  "keywords": ["mcp", "sambanova", "coding", "ai", "minimax"],
-  "mcpServers": {
-    "sambanova-code": {
-      "command": "python3",
-      "args": ["${PLUGIN_DIR}/server.py"],
-      "env": {
-        "SAMBANOVA_API_KEY": "",
-        "SAMBANOVA_BASE_URL": "https://api.sambanova.ai/v1",
-        "SAMBANOVA_MODEL": "MiniMax-M2.7"
-      }
-    }
-  }
+  "keywords": ["mcp", "sambanova", "coding", "ai", "minimax"]
 }
