@@ -2,18 +2,15 @@
 # Author: Nitin Kore
 # SambaNova MCP server — routes coding tasks to SambaNova Cloud models (default: MiniMax M2.7)
 
-import subprocess
 import sys
+import os
 
 try:
     import httpx
     from mcp.server.fastmcp import FastMCP
 except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--quiet", "mcp[cli]", "httpx"])
-    import httpx
-    from mcp.server.fastmcp import FastMCP
-
-import os
+    print("Missing dependencies. Run: pip install \"mcp[cli]\" httpx", file=sys.stderr)
+    sys.exit(1)
 
 mcp = FastMCP("sambanova-code")
 

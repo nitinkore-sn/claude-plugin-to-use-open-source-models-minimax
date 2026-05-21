@@ -35,7 +35,28 @@ Claude orchestrates file reads, edits, and test runs — these tools handle code
 
 Sign up at [cloud.sambanova.ai](https://cloud.sambanova.ai) → API Keys → Create Key. Copy the key.
 
-### Step 2 — Open Claude Code
+### Step 2 — Install dependencies
+
+Open Terminal (Mac/Linux) or Command Prompt (Windows) and run:
+
+**Option A — using a virtual environment (recommended):**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate        # Mac / Linux
+# .venv\Scripts\activate         # Windows
+pip install "mcp[cli]" httpx
+```
+
+**Option B — install globally:**
+```bash
+# Mac / Linux
+pip install "mcp[cli]" httpx --break-system-packages
+
+# Windows
+pip install "mcp[cli]" httpx
+```
+
+### Step 3 — Open Claude Code
 
 Claude Code is a command-line tool. Open it by:
 
